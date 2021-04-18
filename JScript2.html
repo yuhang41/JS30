@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JScript2.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <link rel="stylesheet" type="text/css" href="./JsCss/JsCss2.css">
+
+  </head>
+  
+  <body>
+    <div class="clock">
+    	<div class="clock-face">
+    		<div class="hand second-hand"></div>
+    		<div class="hand min-hand"></div>
+    		<div class="hand hour-hand"></div>
+    	</div>
+    </div>
+    <script type="text/javascript">
+    	;(function(){
+    		const second=document.querySelector('.second-hand');
+    		const min=document.querySelector('.min-hand');
+    		const hour=document.querySelector('.hour-hand');
+    		
+    		function setClock(){
+    			let date=new Date();
+    			
+    			let secondDeg = date.getSeconds() * 6 ;//(360/60)
+    			let minDeg = date.getMinutes() * 6 + date.getSeconds() / 60;//(360/60)+ Seconds/1分鐘裡要走60格
+    			let hourDeg = date.getHours() * 30 + date.getMinutes() * 30 / 60 ;//(360/12)+ Minutes * 30度/60分鐘(時針走一格是30度/1格裡要走60分鐘
+    			
+    			second.style.transform=`rotate(${secondDeg}deg)`;
+    			min.style.transform=`rotate(${minDeg}deg)`;
+    			hour.style.transform=`rotate(${hourDeg}deg)`;
+    		};
+    		
+    		//計時器 setInterval ,setTimeout, requestAnimateFrame       		 		
+    		setInterval(setClock,1000);//設定間格，持續執行setInterval(function(),ms)
+    		
+    		//setTimeout用法自己呼叫自己才能持續執行
+    		//function timeoutHandler(){
+    		//	setClock();
+    		//	setTimeout(timeoutHandler,1000);//設定延遲，延遲一次
+    		//}
+    		//  setTimeout(timeoutHandler,1000);
+    		
+    		//requestAnimateFrame 專門處理畫面更新，用法跟setTimeout一樣
+    		//function animationHandler(){
+    		//	setClock();
+    		//	window.requestAnimateFrame(animationHandler);
+    		//}
+    		//window.requestAnimateFrame(animationHandler);
+    	})();    
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JScript26.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <link rel="stylesheet" type="text/css" href="./JsCss/JsCss26.css" charset="utf-8">
+
+  </head>
+  
+  <body>
+  <h2>Cool</h2>
+  <nav class="top">
+    <div class="dropdownBackground">
+      <span class="arrow"></span>
+    </div>
+
+    <ul class="cool">
+      <li>
+        <a href="#">About Me</a>
+        <div class="dropdown dropdown1">
+          <div class="bio">
+            <img src="https://logo.clearbit.com/wesbos.com">
+            <p>Wes Bos sure does love web development. He teaches things like JavaScript, CSS and BBQ. Wait. BBQ isn't part of web development. It should be though!</p>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="#">Courses</a>
+        <ul class="dropdown courses">
+          <li>
+            <span class="code">RFB</span>
+            <a href="https://ReactForBeginners.com">React For Beginners</a>
+          </li>
+          <li>
+            <span class="code">ES6</span>
+            <a href="https://ES6.io">ES6 For Everyone</a>
+          </li>
+          <li>
+            <span class="code">NODE</span>
+            <a href="https://LearnNode.com">Learn Node</a>
+          </li>
+          <li>
+            <span class="code">STPU</span>
+            <a href="https://SublimeTextBook.com">Sublime Text Power User</a>
+          </li>
+          <li>
+            <span class="code">WTF</span>
+            <a href="http://Flexbox.io">What The Flexbox?!</a>
+          </li>
+          <li>
+            <span class="code">GRID</span>
+            <a href="https://CSSGrid.io">CSS Grid</a>
+          </li>
+          <li>
+            <span class="code">LRX</span>
+            <a href="http://LearnRedux.com">Learn Redux</a>
+          </li>
+          <li>
+            <span class="code">CLPU</span>
+            <a href="http://CommandLinePowerUser.com">Command Line Power User</a>
+          </li>
+          <li>
+            <span class="code">MMD</span>
+            <a href="http://MasteringMarkdown.com">Mastering Markdown</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Other Links</a>
+        <ul class="dropdown dropdown3">
+          <li><a class="button" href="http://twitter.com/wesbos">Twitter</a></li>
+          <li><a class="button" href="http://facebook.com/wesbos.developer">Facebook</a></li>
+          <li><a class="button" href="http://wesbos.com">Blog</a></li>
+          <li><a class="button" href="http://wesbos.com/courses">Course Catalog</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  	let menus = document.querySelectorAll(".cool > li");
+  	let dropsBackground =document.querySelector(".dropdownBackground");
+  	let navTop =document.querySelector(".top");
+  	
+  	function enterHandler(e){
+  		this.classList.add("trigger-enter");
+  		setTimeout(()=>{
+  			//判斷contains("trigger-enter")，如果前面有 trigger-enter 才會加入 trigger-enter-active
+  			this.classList.contains("trigger-enter") && this.classList.add("trigger-enter-active")
+  		},100);
+  		
+  		let drops = this.querySelector(".dropdown");
+  		let reat= drops.getBoundingClientRect();
+  		let navTop =document.querySelector(".top").getBoundingClientRect();
+  		
+  		dropsBackground.classList.add("open");
+  		dropsBackground.style.height=reat.height+"px";
+  		dropsBackground.style.width=reat.width+"px";
+  		
+  		//getBoundingClientRect() 是取頁面的高度，這裡的 drops 是取 CSS 裡的 relative 與 absoulate 之間的top
+  		//所以要取出 relative 跟 頁面 高度的差距來減掉。
+  		dropsBackground.style.top=reat.top+window.scrollY - navTop.top +"px";
+  		dropsBackground.style.left=reat.left+window.scrollX - navTop.left +"px";
+  		
+  		
+  		
+  	}
+  	function leaveHandler(e){
+  		const drops = this.querySelector(".dropdown");
+  		this.classList.remove("trigger-enter");
+  		this.classList.remove("trigger-enter-active");
+  		dropsBackground.classList.remove("open");
+  	}
+  	menus.forEach(menu => {
+  		menu.addEventListener("mouseenter",enterHandler)
+  		menu.addEventListener("mouseleave",leaveHandler)
+  	});
+  </script>
+  </body>
+</html>

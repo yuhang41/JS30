@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+*
+{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;	
+	font-family: 'Pacifico', cursive;
+}
+body
+{
+	background-color: #3BC1AC;
+  	display: flex;
+  	min-height: 100vh;
+  	align-items: center;
+	justify-content:center;
+  	background-image:
+  	radial-gradient(circle at 100% 150%, #3BC1AC 24%, #42D2BB 25%, #42D2BB 28%, #3BC1AC 29%, #3BC1AC 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent),
+  	radial-gradient(circle at 0    150%, #3BC1AC 24%, #42D2BB 25%, #42D2BB 28%, #3BC1AC 29%, #3BC1AC 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent),
+  	radial-gradient(circle at 50%  100%, #42D2BB 10%, #3BC1AC 11%, #3BC1AC 23%, #42D2BB 24%, #42D2BB 30%, #3BC1AC 31%, #3BC1AC 43%, #42D2BB 44%, #42D2BB 50%, #3BC1AC 51%, #3BC1AC 63%, #42D2BB 64%, #42D2BB 71%, transparent 71%, transparent),
+  	radial-gradient(circle at 100% 50%, #42D2BB 5%, #3BC1AC 6%, #3BC1AC 15%, #42D2BB 16%, #42D2BB 20%, #3BC1AC 21%, #3BC1AC 30%, #42D2BB 31%, #42D2BB 35%, #3BC1AC 36%, #3BC1AC 45%, #42D2BB 46%, #42D2BB 49%, transparent 50%, transparent),
+  	radial-gradient(circle at 0    50%, #42D2BB 5%, #3BC1AC 6%, #3BC1AC 15%, #42D2BB 16%, #42D2BB 20%, #3BC1AC 21%, #3BC1AC 30%, #42D2BB 31%, #42D2BB 35%, #3BC1AC 36%, #3BC1AC 45%, #42D2BB 46%, #42D2BB 49%, transparent 50%, transparent);
+  	background-size:100px 50px;
+}
+.voiceinator
+{
+	height: 500px;
+	width: 500px;
+	background: #fff;	
+	border-radius: 20px;
+	padding:20px;
+}
+h1
+{	
+	height: 100px;
+	background: yellow;
+	text-align: center;
+	margin:-20px -20px 0 -20px;
+	padding:10px 0;
+	font-size: 3em;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	
+}
+#voices
+{
+	display: block;
+	height: 30px;
+	width: 100%;
+	margin:10px auto;
+	border-color: white;
+	outline: 0;/*border 外圍還有個無形的邊框就是outline，0就是沒有 1就是有*/
+}
+input,textarea,button
+{
+	width: 100%;
+	padding: 10px;
+	font-family: sans-serif;
+}
+textarea
+{
+	height: 120px;
+	border: 0;
+	outline: 0;
+	background: rgba(0,0,0,.2);
+	border-radius: 20px;
+	font-size: 20px;
+}
+button
+{
+	display: inline-block;
+	width: 49%;
+	background: #d9bb55;
+	font-size: 2em;
+}

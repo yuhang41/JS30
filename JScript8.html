@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JScript8.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    <canvas id="draw" width="800" height="800" style="border:1px solid #000000"></canvas>
+    <script type="text/javascript">
+    	(function(){
+    	let canvas=document.querySelector('#draw');
+    	let ctx = canvas.getContext("2d");
+    	let colorDeg = 0;
+    	let lineWidth = 50;
+    	let direction = -1;
+    	//ctx.strokeStyle = `hsl(${colorDeg},100%,50%)`;//hsl(顏色0~360紅橙黃綠藍澱紫，飽和度，明亮度),hsl色環
+    	//ctx.lineWidth = lineWidth;
+    	ctx.lineCap = 'round';
+    	ctx.lineJoin = 'round';
+    	
+    	 
+    	let drawing =false;
+    	let x=0,y=0;	
+    		canvas.addEventListener("mousedown" , (e) => {
+    			drawing = true;
+    			[x,y]=[e.offsetX,e.offsetY];
+    		});
+    		canvas.addEventListener("mousemove" , (e) => {
+    			if(!drawing) return ;    			   
+    			
+    			ctx.beginPath();    
+    		// 顏色由紅到紫(0~360)				
+    			colorDeg = colorDeg <=360 ? colorDeg + 1 : 0; 
+    			ctx.strokeStyle = `hsl(${colorDeg},100%,50%)`;
+    			
+    		// 寬度由大到小	    			
+    			if(lineWidth < 1 || lineWidth >50){
+    				direction*=-1;
+    				console.log("=========="+direction);
+    			};
+    			lineWidth += direction;    			
+    			ctx.lineWidth = lineWidth;
+    			
+    		// 畫線	    			   			
+    			ctx.moveTo(x, y);//起始點
+    			ctx.lineTo(e.offsetX,e.offsetY);//終點
+    			[x,y]=[e.offsetX,e.offsetY];//在給起始點，如果不給，moveTo()會一直在原點不動
+    			ctx.stroke();
+    			
+    		});
+    		canvas.addEventListener("mouseup" , () => {
+    			drawing = false;
+    			
+    		});
+    		canvas.addEventListener("mouseleave" , () => {
+    			drawing = false;
+    		});	
+    	})()    	    	
+    </script>
+  </body>
+</html>

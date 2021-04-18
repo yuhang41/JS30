@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JScript20.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <link rel="stylesheet" type="text/css" href="./JsCss/JsCss20.css">
+
+  </head>
+  
+  <body>
+  
+    <div class="words" contenteditable>
+    
+    
+    <script type="text/javascript">
+    	window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    	var recognition = new SpeechRecognition();
+    	recognition.lang = 'zh-TW';
+    	recognition.interimResult=false;//interimResult 當你講完一段話停頓時，字體才會顯示出來，true就會每一講一個字就顯示出來
+    									
+    	let p = document.createElement("p");
+    	let words=document.querySelector(".words");
+    	words.appendChild(p);
+    	
+    	recognition.addEventListener('result',function(e){
+    		//recognition 的 result 事件裡的 results 是陣列
+    		//所以這裡要用 Array.from(e.results) 來呼叫
+    		//用map() 取得 la[0] (就是results[0])
+    		//在取得 la[0] 的 transcript ，transcript就是放文字的地方
+    		let char = Array.from(e.results)
+    		.map(la=>la[0])	
+    		.map(la=>la.transcript)
+    		.join("");    		
+    		console.log(e);
+    		
+    		let poopScript = char.replace(/poop|shit|poo|dump/gi, '💩');
+    		p.textContent=poopScript;
+    		
+    		if(e.results[0].isFinal){
+    			p = document.createElement("p");//這裡將再建立一個HTML tag <p>，如果不做，文字將會被覆蓋
+    			words.appendChild(p);
+    		}
+    	});
+    	recognition.addEventListener("end",recognition.start);
+    	recognition.start();
+    </script>
+  </body>
+</html>

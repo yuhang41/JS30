@@ -1,0 +1,99 @@
+@CHARSET "UTF-8";
+*
+{
+	font-family: 'helvetica neue';
+    font-size: 20px;
+    font-weight: 200;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+body
+{
+	background: url("./image/oh-la-la.jpeg");
+	min-height: 900px;
+	display: flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;	
+}
+svg
+{
+	height: 200px;
+	width:200px;
+	background:rgba(0,0,0,0.1);
+	border: 20px solid rgba(0,0,0,0);
+	border-radius: 50%; 
+}
+svg g
+{
+	fill:white;
+}
+
+
+
+
+.wrapper
+{	
+	background:white;
+	box-shadow:0 0 5px 10px rgba(0,0,0,0.5);
+	width:350px;
+	padding:10px 20px;
+	display:flex;
+	flex-direction:column;
+	margin:20px 0;
+}
+.wrapper h2
+{
+	font-size: 30px;
+    font-weight: bold;
+    margin:20px 0;
+    text-align: center;
+}
+.wrapper .plates li
+{
+	border-bottom:2px solid rgba(0,0,0,0.2);
+	list-style:none;		
+}
+.wrapper .plates li label
+{
+	cursor: pointer;
+	margin-left:10px
+}
+.wrapper .plates li input
+{
+	display:none;
+}
+.wrapper .plates li input + label::before
+{
+	content: "○";
+	
+}
+.wrapper .plates li input:checked + label::before
+{	
+	content: "◎";
+}
+
+
+
+
+.wrapper .add-items
+{
+	margin:10px 0;;
+}
+.wrapper .add-items input
+{
+	height: 35px;
+}
+.wrapper .add-items input[type=text]
+{
+	width: 200px;
+	padding:5px;
+	font-size: 10px;
+}
+.wrapper .add-items input[type=submit]
+{
+	padding:5px;
+	width: 100px;
+	font-size: 10px;
+}

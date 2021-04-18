@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JScript6.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=BIG5">
+    
+    <link rel="stylesheet" type="text/css" href="./JsCss/JsCss6.css">
+
+  </head>
+  
+  <body>
+  	<form class="search-form">
+    	<input type="text" class="search" placeholder="City or State">
+    	<ul class="suggestions">
+      		<li>Filter for a city</li>
+      		<li>or a state</li>
+    	</ul>
+  	</form>
+  	
+    <script>
+	const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+	let cities=null;
+	fetch(endpoint)
+		.then(blob => blob.json())
+		.then(data => (cities=data));
+	
+	//字的配對
+	function findMatches(wordtoMatch,cities){
+		return cities.filter(e =>{
+		 const regex = new RegExp(wordtoMatch,"gi");
+		 	  		   //RegExp()正則運算式，功能 gi 要拆開來解釋，g全域的從頭到尾搜尋，i不分大小寫 
+		 return e.city.match(regex) || e.state.match(regex);
+		});	
+	}
+	//搜尋列尾端的數字
+	function numberWithCommas(x){
+		//return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+									  //正則運算式語法
+		return (x*1).toLocaleString();
+	}
+	//搜尋結果列，並把查詢的字顯示出來
+	function inputHandler(){
+		let matchArry = findMatches(this.value,cities);
+		
+		const html=matchArry.map(e=>{
+			const regex = new RegExp(this.value,"gi");
+				
+				//查詢的字顯示出來
+				const cityName =e.city.replace(regex,
+				`<span class="h1">${this.value}</span>`);
+			
+				const stateName =e.state.replace(regex,
+				`<span class="h1">${this.value}</span>`);
+				
+				//回傳搜尋結果列
+			return `
+				<li>
+					<span class="name">${cityName},${stateName}</span>
+					<span class="population">${numberWithCommas(e.population)}</span>								
+				</li>
+				`;
+		}).join("");
+		suggestions.innerHTML = html;
+	}
+	const suggestions = document.querySelector('.suggestions');
+	document.querySelector('.search').addEventListener('keyup',inputHandler);
+			
+	</script>
+  </body>
+</html>

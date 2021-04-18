@@ -1,0 +1,79 @@
+@CHARSET "UTF-8";
+*
+{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;	
+	font-family: 'Pacifico', cursive;
+}
+body
+{
+	min-height: 100vh;
+	background: linear-gradient(45deg,#688bdd ,#2c58c0);
+}
+.timer
+{
+	position:relative;
+	width: 100%;
+	min-height: 100vh;
+}
+.timer .timer__controls
+{
+	position:fixed;
+	width:100%;
+	background: linear-gradient(45deg,#3f84d8 ,#20599f);
+	display: flex;
+}
+.timer .timer__controls .timer__button
+{
+	flex:1;
+	background: rgba(0,0,0,0);
+	height: 50px;
+	outline: 0;
+	border: 1px solid rgba(0,0,0,.5);
+	border-left: rgba(0,0,0,0);
+	font-size: 20px;
+	color:#fff;
+	cursor: pointer;
+	transition:all .2s;
+}
+.timer .timer__controls .timer__button:hover
+{
+	background: #2054cc;
+}
+.timer .timer__controls #custom
+{
+	flex:1;
+}
+.timer .timer__controls input
+{
+	width:100%;
+	height: 50px;
+	outline: 0;
+	border: 1px solid rgba(0,0,0,.5);
+	border-left: rgba(0,0,0,0);
+	padding:5px;
+}
+.display
+{
+	position: absolute;
+	border: 1px solid rgba(0,0,0,.5);	
+	height: 400px;
+	width: 600px;
+	top:calc(50% - 200px);
+	left:calc(50% - 300px);
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+.display__time-left
+{
+	color:#fff;
+	font-size:200px;
+}
+.display__end-time
+{
+	color:#fff;
+	font-size:50px;
+}

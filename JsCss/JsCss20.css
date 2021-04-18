@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+*
+{
+	font-family: sans-serif;
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+body
+{
+	background: gray;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;	
+}
+.words
+{
+	width: 400px;
+	background: white;
+	padding:20px;
+	line-height: 3rem;	
+}

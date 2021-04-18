@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JScript22.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=BIG5">
+    
+    <link rel="stylesheet" type="text/css" href="./JsCss/JsCss22.css">
+
+  </head>
+  
+  <body>
+    <nav>
+      <span class="hight"></span>
+      <ul class="menu">
+        <li><a href="">Home</a></li>
+        <li><a href="">Order Status</a></li>
+        <li><a href="">Tweets</a></li>
+        <li><a href="">Read Our History</a></li>
+        <li><a href="">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="wrapper">
+      <p>Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing elit. Est <a href="">explicabo</a> unde natus necessitatibus esse obcaecati distinctio, aut itaque, qui vitae!</p>
+      <p>Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque praesentium laborum pariatur earum <a href="">quaerat</a> cupiditate consequuntur facilis ullam dignissimos, aperiam quam veniam.</p>
+      <p>Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime <a href="">corrupti</a> possimus <a href="">veritatis</a> ipsum fugit recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.</p>
+      <p>Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae magni odit <a href="">totam</a> ut consequatur eveniet sunt quam provident sapiente dicta neque quod.</p>
+      <p>Aliquam <a href="">dicta</a> sequi culpa fugiat <a href="">consequuntur</a> pariatur optio ad minima, maxime <a href="">odio</a>, distinctio magni impedit tempore enim repellendus <a href="">repudiandae</a> quas!</p>
+    </div>
+    <script type="text/javascript">
+    
+    	let now =null;
+    	let menuA=document.querySelectorAll("a");
+    	let hight=document.querySelector(".hight");
+    	hight.style.display = "none";
+    	
+    	function setPosition(){
+    		if(!now) return;
+    		let {width,height,top,left}=now.getBoundingClientRect();
+    									//getBoundingClientRect()會複製對象(now)的長寬高，鎖定對象(now)的位置
+    		console.log(width);
+    		hight.style.display = "";	
+    		hight.style.width =width+"px";
+    		hight.style.height =height+"px";
+    		
+    		//因為是位置，所以滑滾輪的時候 位置 會被變動，這裡 位置 top 和 left 就要加上視窗的 scrollX 和 scrollY
+    		hight.style.top =top + window.scrollY + "px"; 
+    		hight.style.left =left + window.scrollX + "px"; 
+    	}
+    	function hightHandler(){	
+    		now =this;    			
+    		setPosition();   		
+    	};
+    	
+    	menuA.forEach(e =>{
+    		e.addEventListener("mouseenter",hightHandler);
+    	});
+    	window.addEventListener("resize",setPosition);
+    </script>
+  </body>
+</html>

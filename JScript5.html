@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JScript5.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <link rel="stylesheet" type="text/css" href="./JsCss/JsCss5.css">
+
+  </head>
+  
+  <body>
+    <div class="panels">
+    <div class="panel panel1">
+      <p>Hey</p>
+      <p>Let's</p>
+      <p>Dance</p>
+    </div>
+    <div class="panel panel2">
+      <p>Give</p>
+      <p>Take</p>
+      <p>Receive</p>
+    </div>
+    <div class="panel panel3">
+      <p>Experience</p>
+      <p>It</p>
+      <p>Today</p>
+    </div>
+    <div class="panel panel4">
+      <p>Give</p>
+      <p>All</p>
+      <p>You can</p>
+    </div>
+    <div class="panel panel5">
+      <p>Life</p>
+      <p>In</p>
+      <p>Motion</p>
+    </div>
+  </div>
+  <script type="text/javascript">
+  	(function(){
+  		const panels=document.querySelectorAll('.panel');
+  		function clickHandler(){
+  			this.classList.toggle('open');
+  		};  		
+  		function transitionendHandler(e){
+  				  //transitionend判斷有幾次css的屬性，每一個屬性會觸發一次，
+  				  //如果有2次就會變成第一次觸發打開，第2次觸發關閉，
+  				  //有3次就以此類推就會變成打開，
+  				  //所以transitionend需要做判斷  	
+  			if(e.propertyName.indexOf('flex') !== -1){//transitionend事件必須做判斷
+  					
+  			this.classList.toggle('open-active');
+  			};
+  		};
+  		panels.forEach((e)=>{
+  			e.addEventListener('click',clickHandler);
+  			e.addEventListener('transitionend',transitionendHandler);
+  							   //transitionend事件就是css的transition動畫結束
+  		});
+  	})();
+  </script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JScript14.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+  <script>
+    // start with strings, numbers and booleans
+
+    // Let's say we have an array
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+    // and we want to make a copy of it.
+
+    // You might think we can just do something like this:
+    
+   		//let players2 = players;
+
+    // however what happens when we update that array?
+    
+    	//player2[0] = "change";    
+
+    // now here is the problem!
+    
+  		//console.log(players,player2);//['change', 'Sarah', 'Ryan', 'Poppy'],['change', 'Sarah', 'Ryan', 'Poppy']
+
+    // oh no - we have edited the original array too!    
+
+    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+
+    // So, how do we fix this? We take a copy instead!
+
+    // one way
+    
+    	let player2 = players.slice();//可以複製陣列，放進創新的陣列裡
+    	//player2 = [].concat(player); 結果相同
+    	//player2 = [...player];
+    	player2[0] = "change";    
+    	console.log(players,player2);//['Wes', 'Sarah', 'Ryan', 'Poppy'],['change', 'Sarah', 'Ryan', 'Poppy']
+
+    // or create a new array and concat the old one in
+
+    // or use the new ES6 Spread
+
+    // now when we update it, the original one isn't changed
+
+    // The same thing goes for objects, let's say we have a person object
+
+    // with Objects
+    const person = {
+      name: 'Wes Bos',
+      age: 80
+    };
+
+    // and think we make a copy:
+    
+    	//let p2 = person;    
+		//person = "XXX";
+		person.age=50;
+		console.log("hi"+person.age);//"XXX",{...}
+	
+		//let p2 = person;    
+		//person.name = "XXX";
+		//console.log(person,p2);//{"XXX"...},{"XXX"...}
+	
+	let aa ={name:"yuhang",age:25};
+	let bb ={name:"Tina"};
+	let cc =Object.assign(aa, bb);//{"Tina",age:25}
+					//assign(1陣列,2陣列) 1陣列會被2陣列覆蓋，沒有的就保留住，只覆蓋相同的東西
+	console.log(cc);//
+	
+    // how do we take a copy instead?
+
+    // We will hopefully soon see the object ...spread
+
+    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+	
+	const wes = {
+      name: 'Wes',
+      age: 100,
+      social: {
+        twitter: '@wesbos',
+        facebook: 'wesbos.developer'
+      }
+    };
+
+    //console.clear();
+    console.log(wes);
+
+    const dev = Object.assign({}, wes);
+
+    const dev2 = JSON.parse(JSON.stringify(wes));
+  </script>
+  </body>
+</html>

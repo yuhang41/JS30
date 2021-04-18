@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Key Detection</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+  </head>
+  
+  <body>
+    <script>
+    	let secretCode=[38,38,40,40,37,39,37,39,66,65];
+    	let input=[];
+    	console.log("hi");
+    	window.addEventListener('keyup',function(e){    		
+    		input.push(e.keyCode);    		
+    		input.splice(-secretCode.length-1, input.length-secretCode.length);  
+    		//-secretCode.length-1 就是-11 input.length 是 11 secretCode.length 是10
+    		//因為input陣列裡的數字在這段要做前還沒被splice()，
+    		//所以input.length會是11，要用-11才能知道開頭在哪
+    		
+    		//-secretCode.length-1也可以把它看作是0，因為做出來的結果相同
+    		
+    		//以上是精簡化的if做法
+    		//if(input.length>secretCode.length){
+    		//	input.splice(0,1)
+    		//}
+    		
+    		if(input.join('|')===secretCode.join('|')){
+    			console.log("pass");
+    		}
+    	});
+    	
+    </script>
+  </body>
+</html>

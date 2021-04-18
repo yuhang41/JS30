@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+*
+{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;	
+	font-family: 'Amatic SC', cursive;
+}
+body
+{
+	min-height: 100vh;
+	background: #dfb920;
+}
+h1
+{
+	text-align: center;
+	font-size: 75px;
+	padding:20px;
+	margin-top:30px; 
+}
+h1 .score
+{
+	padding:10px 20px;
+	background: #e3c13c;
+}
+
+
+.game
+{
+	height:450px;
+	width:700px;
+	border: 1px solid rgba(0,0,0,1);
+	margin:auto;
+	overflow: hidden;
+	display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(210px,1fr));
+}
+.game .hole
+{	
+	position:relative;
+	overflow: hidden;
+}
+.game .hole:after
+{
+	content:'';
+	position:absolute;
+	background: url(./image/dirt.svg) bottom center no-repeat;
+	background-size:contain;
+	width: 100%;
+	height: 40%;
+	bottom: -40px;
+}
+.game .hole .mole
+{
+	background: url(./image/mole.svg) bottom center no-repeat;
+	background-size:contain;
+	width: 100%;
+	height: 90%;
+	transform:translateY(100%);
+	transition:transform 1s;
+}
+.game .hole .up
+{
+	transform:translateY(0);
+}

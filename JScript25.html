@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JScript25.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<style type="text/css">
+	html {
+    	box-sizing: border-box;
+  	}
+  	body {
+  		min-height:100vh;
+  	}
+  	.one {
+    	background: thistle;
+    	width: 100%;
+    	padding: 100px;
+  	}
+
+  	.two {
+    	background: mistyrose;    	
+    	padding: 100px;
+  	}
+
+  	.three {
+    	background: coral;    
+    	padding: 100px;
+  	}
+	</style>
+  </head>
+  
+  <body>
+  <button>Button</button>
+    <div class="one">
+    	<div class="two">
+      		<div class="three">
+      		</div>
+    	</div>
+  	</div>
+  	
+  	<ul>
+  		<li><a href="javascript:;">Button1</a></li>
+  		<li><a href="javascript:;">Button2</a></li>
+  		<li><a href="javascript:;">Button3</a></li>
+  	</ul>
+  	
+  <script type="text/javascript">
+  	let button=document.querySelector("button");
+  	button.addEventListener("click",buttonHandler,{capture:true,once:false});
+  	function buttonHandler(){
+  		console.log("buttonHandler hi");
+  	}
+  	
+  	
+  	let divs = document.querySelectorAll("div");
+  	divs.forEach(div => 
+	  	div.addEventListener("click",divHandler,{capture:false})
+	);
+	function divHandler(e){
+		//e.stopPropagation();//中斷輸出，第一次觸發完就結束
+		console.log(e.path);//印出最裡面到最外面的整個路程
+		console.log(this.className);
+	}
+	
+	
+//以下是 Binding 跟 Delegate 的差別
+//Binding意思 設定在 tag <a> 上，如果在頁面新加入 <a>，這個新加入 <a> 是無法觸發下面的 function 
+	
+	let as = document.querySelectorAll("a");
+  	as.forEach(a => 
+	  	a.addEventListener("click",aHandler,{capture:false,passive:false})
+	);
+	function aHandler(e){
+		e.preventDefault();//去除 DOM 原有的功能，<a href="#"> 這個 # 的 DOM 功能會讓頁面置頂
+		console.log("Binding A click ",this);
+	}
+
+
+	
+//Delegate意思 直接呼叫包住 <a> 的 <ul>，之後在頁面上新增 <a>，這個新增的 <a> 是可以觸發下面的 function
+	
+	let ul = document.querySelector("ul");
+	ul.addEventListener("click",ulHandler);
+	function ulHandler(e){
+		
+		if(e.target.nodeName === "A"){//nodeName 就是 tag 的名稱，但是取出來的值會是 大寫 		
+			console.log("Delegate A click ",e.target);
+		}
+	}
+  </script>
+  </body>
+</html>

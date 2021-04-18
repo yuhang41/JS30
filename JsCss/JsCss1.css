@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+*
+{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+body
+{
+	background:#ccc;
+	width:1000px;
+	height:100vh;
+}
+.keys
+{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%;
+	height:100%;
+}
+.key
+{	
+	display:flex;
+	flex-direction:column;
+	align-items:center;	
+	margin:20px;
+	border:5px solid #000;
+	border-radius:10px;
+	width:70px;
+	padding:10px; 
+	transition: all .07s ease;
+}
+.playing
+{
+	transform: scale(1.1);
+	border:5px solid #ffff80;
+	
+}
+.key kbd
+{			
+	font-size:2em;
+}
+.key .sound
+{	
+	color:#ff8000;
+}
